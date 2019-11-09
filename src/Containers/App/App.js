@@ -1,16 +1,15 @@
 import React from "react";
-import Images from "../Images";
 import Login from "../../components/Login";
 import firebase, { provider } from "../../firebase";
 import { globalHistory } from "@reach/router";
-import UserInput from "../../components/UserInput";
 import styles from "./App.module.scss";
 import { Link } from "@reach/router";
 import { Router } from "@reach/router";
 import Game from "../Game/Game";
+import Hall from "../Hall";
 
 class App extends React.Component {
-  state = { user: null, numImages: 0 };
+  state = { user: null, numImages: 0, rotation: 0 };
   signIn = () => {
     firebase
       .auth()
@@ -19,7 +18,7 @@ class App extends React.Component {
         const user = result.user;
         console.log(user);
         this.setState({ user: user });
-        globalHistory.navigate("/welcome");
+        globalHistory.navigate("/");
         // global history here tells the browser where to send you once logged in
       })
       .catch(error => console.log(error));
@@ -31,39 +30,63 @@ class App extends React.Component {
     });
   };
 
+  state = { isFlipped: false, counter: 0 };
+
+  handleClick = () => {
+    this.setState({
+      isFlipped: !this.state.isFlipped,
+      counter: this.state.counter + 1
+    });
+  };
+
   render() {
+    let rotation = 0;
+    setInterval(() => rotation++, console.log(rotation), 1000);
+    // function rotationAdder() {
+    //   rotation = 0;
+    //   console.log(rotation);
+    //   window.setInterval(() => rotation++, 1000);
+    // }
+    // console.log(rotation);
+    // while (rotation < 100) {
+    //   rotationAdder();
+    // }
+    // rotationAdder();
+
+    let randomRotation = `rotate(${this.state.rotation}deg)`;
+    let transformation = { transform: randomRotation };
     let html =
-      this.state.numImages > 5000 && this.state.user != null ? (
-        <>
-          <section className={styles.form}>
-            <UserInput handleChange={this.setInputValue} />
+      this.state.user != null ? (
+        <section className={styles.welcome}>
+          <h1>Would you like to enter the Hall of Mirrors or play a game?</h1>
+          <section className={styles.buttons}>
+            <button>
+              <Link to="/hall">Enter the Hall</Link>
+            </button>
+            <button>
+              <Link to="/game">Play the Game</Link>
+            </button>
           </section>
-          <p>
-            Sorry, loading this many images takes too long. Please choose a
-            number less than or equal to 5000.
-          </p>
-          <p>
-            I like you for testing the limits though, would you like to play a
-            game?
-          </p>
-          <Link to="/game">Game</Link>
           <Router>
-            <Game path="/game" />
+            <Hall
+              path="/hall"
+              numImages={this.state.numImages}
+              user={this.state.user}
+              setInputValue={this.setInputValue}
+            />
+            <Game path="/game" user={this.state.user} />
           </Router>
-        </>
-      ) : this.state.user != null ? (
-        <>
-          <section className={styles.form}>
-            <UserInput handleChange={this.setInputValue} />
-          </section>
-          <section className={styles.mainContent}>
-            <Images user={this.state.user} numImages={this.state.numImages} />
-          </section>
-        </>
+        </section>
       ) : (
-        <>
-          <Login signIn={this.signIn} text="Sign in" />
-        </>
+        <section className={styles.logIn}>
+          <h1> You have to log in to access this website. </h1>
+          <a>
+            <Login signIn={this.signIn} text="Sign in" />
+          </a>
+          <div style={transformation} className={styles.test}>
+            HAT
+          </div>
+        </section>
       );
 
     return <>{html}</>;

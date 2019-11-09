@@ -1,8 +1,13 @@
 import React from "react";
+import styles from "./Login.module.scss";
 
 class Login extends React.Component {
   render() {
-    return <button onClick={this.props.signIn}> {this.props.text} </button>;
+    return (
+      <button className={styles.logIn} onClick={this.props.signIn}>
+        {this.props.text}
+      </button>
+    );
   }
 }
 

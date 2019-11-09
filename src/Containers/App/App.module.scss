@@ -1,14 +1,38 @@
-.mainContent {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  overflow-x: hidden;
-  img {
-    height: 20vh;
+.test {
+  background-color: red;
+  padding: 20px;
+  display: block;
+  width: 50px;
+  margin: auto;
+}
+
+.logIn {
+  margin-top: 30vh;
+  h1 {
+    text-align: center;
+  }
+  a {
+    display: block;
+    margin: auto;
   }
 }
 
-.form {
-  display: block;
+.welcome {
+  text-align: center;
+  button {
+    display: block;
+    margin: 0 5vw;
+    background-color: rgb(86, 188, 138);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    &:hover {
+      background-color: rgb(86 * 0.8, 188 * 0.8, 138 * 0.8);
+    }
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+  }
 }
