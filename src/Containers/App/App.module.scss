@@ -1,6 +1,14 @@
-.app {
+.mainContent {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  img {
+    height: 20vh;
+  }
+}
+
+.form {
+  display: block;
 }
