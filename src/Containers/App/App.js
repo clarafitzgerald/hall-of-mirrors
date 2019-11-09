@@ -41,19 +41,16 @@ class App extends React.Component {
 
   render() {
     let rotation = 0;
-    setInterval(() => rotation++, console.log(rotation), 1000);
-    // function rotationAdder() {
-    //   rotation = 0;
-    //   console.log(rotation);
-    //   window.setInterval(() => rotation++, 1000);
-    // }
-    // console.log(rotation);
-    // while (rotation < 100) {
-    //   rotationAdder();
-    // }
-    // rotationAdder();
+    let addRotation = () => {
+      rotation += 100;
+      console.log(rotation);
+    };
+    let myVar = setInterval(addRotation, 1000);
+    if (rotation > 360) {
+      clearInterval(myVar);
+    }
 
-    let randomRotation = `rotate(${this.state.rotation}deg)`;
+    let randomRotation = `rotate(${rotation}deg)`;
     let transformation = { transform: randomRotation };
     let html =
       this.state.user != null ? (
