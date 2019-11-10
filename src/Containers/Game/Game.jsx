@@ -8,7 +8,9 @@ class Game extends Component {
       <>
         <h1>The game is coming soon.</h1>
         <p> Game ideas:</p>
-        <ul style={{ textAlign: "left", display: "block", marginLeft: "20vw" }}>
+        <ul
+          style={{ textAlign: "left", display: "block", margin: "20px 20vw" }}
+        >
           <li>
             Image slowly turns, you have to click it before it gets to 180
             degrees to save it. As soon as any die, you're out.
