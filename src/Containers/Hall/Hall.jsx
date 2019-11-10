@@ -5,7 +5,6 @@ import Images from "../Images";
 
 class Hall extends Component {
   render() {
-    console.log(this.props.numImages);
     let html =
       this.props.numImages > 5000 ? (
         <>

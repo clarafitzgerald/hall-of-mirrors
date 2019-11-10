@@ -16,7 +16,6 @@ class App extends React.Component {
       .signInWithPopup(provider)
       .then(result => {
         const user = result.user;
-        console.log(user);
         this.setState({ user: user });
         globalHistory.navigate("/");
         // global history here tells the browser where to send you once logged in
@@ -37,10 +36,20 @@ class App extends React.Component {
           <h1>Would you like to enter the Hall of Mirrors or play a game?</h1>
           <section className={styles.buttons}>
             <button>
-              <Link to="/hall">Enter the Hall</Link>
+              <Link
+                to="/hall"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Enter the Hall
+              </Link>
             </button>
             <button>
-              <Link to="/game">Play the Game</Link>
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to="/game"
+              >
+                Play the Game
+              </Link>
             </button>
           </section>
           <Router>
@@ -56,9 +65,9 @@ class App extends React.Component {
       ) : (
         <section className={styles.logIn}>
           <h1> You have to log in to access this website. </h1>
-          <a>
+          <div>
             <Login signIn={this.signIn} text="Sign in" />
-          </a>
+          </div>
         </section>
       );
 

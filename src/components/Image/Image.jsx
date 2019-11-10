@@ -36,7 +36,6 @@ class Image extends Component {
     let color = {
       backgroundColor: this.state.color
     };
-    console.log(color);
 
     return (
       <div style={color}>
