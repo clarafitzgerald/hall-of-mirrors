@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import Image from "../../components/Image";
+import { Link } from "@reach/router";
 
 class Game extends Component {
   state = {};
   render() {
     return (
       <>
-        <Image user={this.props.user} />
+        <h1>The game is coming soon.</h1>
+        <Link to="/hall">Go to the hall instead</Link>
       </>
     );
   }

@@ -8,15 +8,21 @@ class Images extends Component {
         ? this.props.user.photoURL
         : "../../images/default";
 
+    let randNum = max => {
+      return Math.ceil(Math.random() * max);
+    };
     let innerHtml = [];
     for (let index = 0; index < this.props.numImages; index++) {
-      let randomNumber = Math.ceil(Math.random() * 360);
       innerHtml.push(
         <Image
           src={image}
           alt="display"
           key={index}
-          randomNumber={randomNumber}
+          randomNumber360={randNum(360)}
+          randomNumber2={randNum(2)}
+          firstRandomNumber255={randNum(255)}
+          secondRandomNumber255={randNum(255)}
+          thirdRandomNumber255={randNum(255)}
           numImages={this.props.numImages}
         />
       );

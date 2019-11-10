@@ -30,28 +30,7 @@ class App extends React.Component {
     });
   };
 
-  state = { isFlipped: false, counter: 0 };
-
-  handleClick = () => {
-    this.setState({
-      isFlipped: !this.state.isFlipped,
-      counter: this.state.counter + 1
-    });
-  };
-
   render() {
-    let rotation = 0;
-    let addRotation = () => {
-      rotation += 100;
-      console.log(rotation);
-    };
-    let myVar = setInterval(addRotation, 1000);
-    if (rotation > 360) {
-      clearInterval(myVar);
-    }
-
-    let randomRotation = `rotate(${rotation}deg)`;
-    let transformation = { transform: randomRotation };
     let html =
       this.state.user != null ? (
         <section className={styles.welcome}>
@@ -80,9 +59,6 @@ class App extends React.Component {
           <a>
             <Login signIn={this.signIn} text="Sign in" />
           </a>
-          <div style={transformation} className={styles.test}>
-            HAT
-          </div>
         </section>
       );
 
