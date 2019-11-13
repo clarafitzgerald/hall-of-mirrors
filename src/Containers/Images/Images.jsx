@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import Image from "../../components/Image/Image";
 
 class Images extends Component {
+  state = { correctedArray: this.props.correctedArray };
+  isCorrected = (index, boolean) => {
+    const correctedArray = this.state.correctedArray;
+    correctedArray[index] = boolean;
+    this.setState({ correctedArray });
+  };
   render() {
     let image =
       this.props.user !== null
@@ -24,8 +30,9 @@ class Images extends Component {
           secondRandomNumber255={randNum(255)}
           thirdRandomNumber255={randNum(255)}
           numImages={this.props.numImages}
-          activate={this.props.activate}
-          isActive={this.props.isActive}
+          isCorrected={this.isCorrected}
+          index={index}
+          handleImageClick={this.props.handleImageClick}
         />
       );
     }

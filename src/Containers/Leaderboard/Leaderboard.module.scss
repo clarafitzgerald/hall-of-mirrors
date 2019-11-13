@@ -1,3 +1,11 @@
+.leaderboardRow {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+
+  width: 70vw;
+}
+
 .buttons {
   display: flex;
   align-items: stretch;
@@ -8,12 +16,4 @@
 .button {
   width: 20vw;
   display: block;
-}
-
-.mainContent {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  overflow-x: hidden;
 }
