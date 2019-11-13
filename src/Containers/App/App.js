@@ -84,12 +84,17 @@ class App extends React.Component {
       ) : (
         <section className={styles.logIn}>
           <h1> You have to log in to access this website. </h1>
-          <div>
-            <Button onClick={this.signIn} text="Sign in" />
-          </div>
-          <div>
-            <Button onClick={this.signInDefault} text="Enter as default user" />
-          </div>
+          <section className={styles.flexButtons}>
+            <div>
+              <Button onClick={this.signIn} text="Sign in" />
+            </div>
+            <div>
+              <Button
+                onClick={this.signInDefault}
+                text="Enter as default user"
+              />
+            </div>
+          </section>
         </section>
       );
 

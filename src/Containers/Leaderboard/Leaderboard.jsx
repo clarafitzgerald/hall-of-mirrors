@@ -70,13 +70,18 @@ class Leaderboard extends Component {
       <>
         {instruction}
         <section className={styles.buttons}>{addButtons}</section>
-
-        {this.state.filteredScores.map((score, docId) => (
-          <section key={docId} className={styles.leaderboardRow}>
-            <p>{score.user}</p>
-            <p>{score.finishTime}</p>
-          </section>
-        ))}
+        <table className={styles.table}>
+          <tr>
+            <th>User's name</th>
+            <th>Finish time (seconds)</th>
+          </tr>
+          {this.state.filteredScores.map((score, docId) => (
+            <tr key={docId}>
+              <th>{score.user}</th>
+              <th>{score.finishTime / 1000}</th>
+            </tr>
+          ))}
+        </table>
       </>
     );
   }

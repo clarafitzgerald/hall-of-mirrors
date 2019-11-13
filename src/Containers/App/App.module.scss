@@ -9,6 +9,14 @@
   }
 }
 
+.flexButtons {
+  width: 60vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
 .welcome {
   text-align: center;
   button {
