@@ -9,19 +9,19 @@ class Stopwatch extends Component {
   handleClick = () => {
     this.setState(state => {
       if (state.status) {
-        clearInterval(this.timer);
+        clearInterval(state.timer);
       } else {
-        const startTime = Date.now() - this.state.runningTime;
-        this.timer = setInterval(() => {
+        const startTime = Date.now() - state.runningTime;
+        state.timer = setInterval(() => {
           this.setState({ runningTime: Date.now() - startTime });
-        });
+        }, 100);
       }
-      return { status: !state.status, isActive: false };
+      return { status: !state.status };
     });
   };
 
   handleReset = () => {
-    this.setState({ runningTime: 0, status: false });
+    this.setState({ runningTime: 0 }, this.handleClick);
   };
   render() {
     // this.state.runningTime > 0
