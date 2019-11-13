@@ -1,10 +1,11 @@
-.logIn {
+.button {
   display: block;
   margin: auto;
   background-color: rgb(86, 188, 138);
   color: white;
   border: none;
   border-radius: 20px;
+  width: 15vw;
   padding: 10px;
   &:hover {
     background-color: rgb(86 * 0.8, 188 * 0.8, 138 * 0.8);

@@ -24,10 +24,13 @@ class Images extends Component {
           secondRandomNumber255={randNum(255)}
           thirdRandomNumber255={randNum(255)}
           numImages={this.props.numImages}
+          activate={this.props.activate}
+          isActive={this.props.isActive}
         />
       );
     }
-    return <> {innerHtml}</>;
+
+    return <>{innerHtml}</>;
   }
 }
 

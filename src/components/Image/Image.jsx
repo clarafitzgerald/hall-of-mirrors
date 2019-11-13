@@ -9,6 +9,9 @@ class Image extends Component {
 
   render() {
     let resetTransformations = () => {
+      if (this.props.isActive === false) {
+        this.props.activate();
+      }
       if (this.state.rotationValue !== 0) {
         this.setState({ rotationValue: 0, scale: 1, color: "transparent" });
       } else {

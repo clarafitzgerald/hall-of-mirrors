@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../../components/Login";
+import Button from "../../components/Button";
 import firebase, { provider } from "../../firebase";
 import { globalHistory } from "@reach/router";
 import styles from "./App.module.scss";
@@ -21,6 +21,15 @@ class App extends React.Component {
         // global history here tells the browser where to send you once logged in
       })
       .catch(error => console.log(error));
+  };
+
+  signInDefault = () => {
+    this.setState({
+      user: {
+        displayName: "Unknown User",
+        photoURL: require("../../images/default.jpg")
+      }
+    });
   };
 
   setInputValue = event => {
@@ -59,14 +68,17 @@ class App extends React.Component {
               user={this.state.user}
               setInputValue={this.setInputValue}
             />
-            <Game path="/game" user={this.state.user} />
+            <Game user={this.state.user} path="/game" />
           </Router>
         </section>
       ) : (
         <section className={styles.logIn}>
           <h1> You have to log in to access this website. </h1>
           <div>
-            <Login signIn={this.signIn} text="Sign in" />
+            <Button onClick={this.signIn} text="Sign in" />
+          </div>
+          <div>
+            <Button onClick={this.signInDefault} text="Enter as default user" />
           </div>
         </section>
       );

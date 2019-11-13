@@ -1,0 +1,16 @@
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  width: 20vw;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+}

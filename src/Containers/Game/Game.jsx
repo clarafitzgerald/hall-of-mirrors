@@ -1,38 +1,59 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
+import styles from "./Game.module.scss";
+import Button from "../../components/Button";
+import Images from "../Images";
+import Stopwatch from "../../components/Stopwatch";
 
 class Game extends Component {
-  state = {};
+  state = { difficulty: null };
+
+  // stopwatchOn = () => {
+  //   this.setState({ isStopwatchRunning: true });
+  // };
+
+  // stopwatchOff = () => {
+  //   this.setState({ isStopwatchRunning: false });
+  // };
+
   render() {
+    let difficulties = [
+      { type: "easy", numImages: 5 },
+      { type: "mediocre", numImages: 25 },
+      { type: "tough", numImages: 625 },
+      { type: "hard", numImages: 3125 },
+      { type: "I've literally got all day", numImages: 5000 }
+    ];
+    let addButtons = difficulties.map((difficulty, index) => (
+      <Button
+        className={styles.button}
+        onClick={() => {
+          this.setState({ difficulty });
+        }}
+        text={difficulty.type}
+        key={index}
+      />
+    ));
+
+    let addImages = this.state.difficulty ? (
+      <section className={styles.mainContent}>
+        <Images
+          activate={this.activate}
+          user={this.props.user}
+          numImages={this.state.difficulty.numImages}
+          isActive={this.state.isActive}
+        />
+      </section>
+    ) : null;
+
+    // let renderGame = this.state.isStopwatchRunning ? addImages : "";
     return (
       <>
-        <h1>The game is coming soon.</h1>
-        <p> Game ideas:</p>
-        <ul
-          style={{ textAlign: "left", display: "block", margin: "20px 20vw" }}
-        >
-          <li>
-            Image slowly turns, you have to click it before it gets to 180
-            degrees to save it. As soon as any die, you're out.
-          </li>
-          <li>
-            Include stopwatch - make all the images normal again in the quickest
-            time possible.
-          </li>
-        </ul>
-        <Link
-          to="/hall"
-          style={{
-            textDecoration: "none",
-            color: "white",
-            backgroundColor: "#56bc8a",
-            borderRadius: "20px",
-            padding: "10px",
-            margin: "10px"
-          }}
-        >
-          Go to the hall instead
-        </Link>
+        <section className={styles.buttons}>{addButtons}</section>
+        {addImages}
+        <Stopwatch
+          stopwatchOn={this.stopwatchOn}
+          stopwatchOff={this.stopwatchOff}
+        />
       </>
     );
   }
