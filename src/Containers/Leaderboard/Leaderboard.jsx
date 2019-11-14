@@ -34,6 +34,11 @@ class Leaderboard extends Component {
     let selectDifficulty = this.state.scores.filter(
       score => score.difficulty === chosenDifficulty
     );
+
+    selectDifficulty.length > 25
+      ? (selectDifficulty = selectDifficulty.slice(0, 25))
+      : (selectDifficulty = selectDifficulty.slice());
+
     this.setState({ filteredScores: selectDifficulty });
   };
 
@@ -66,21 +71,31 @@ class Leaderboard extends Component {
       ) : (
         <p>Select a different difficulty?</p>
       );
+
+    let tableHeading =
+      this.state.chosenDifficulty == null ? null : (
+        <tr>
+          <th>Position</th>
+          <th>User's name</th>
+          <th>Finish time (seconds)</th>
+        </tr>
+      );
+
     return (
       <>
         {instruction}
         <section className={styles.buttons}>{addButtons}</section>
         <table className={styles.table}>
-          <tr>
-            <th>User's name</th>
-            <th>Finish time (seconds)</th>
-          </tr>
-          {this.state.filteredScores.map((score, docId) => (
-            <tr key={docId}>
-              <th>{score.user}</th>
-              <th>{score.finishTime / 1000}</th>
-            </tr>
-          ))}
+          <tbody>
+            {tableHeading}
+            {this.state.filteredScores.map((score, docId) => (
+              <tr key={docId}>
+                <th>{docId + 1}</th>
+                <th>{score.user}</th>
+                <th>{score.finishTime / 1000}</th>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </>
     );

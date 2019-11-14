@@ -7,24 +7,22 @@ import { firestore } from "../../firebase";
 class Game extends Component {
   state = {
     difficulty: null,
-    isStopwatchRunning: false,
     status: false,
     runningTime: 0,
     correctedArray: [],
     numImages: 0,
     winStatus: false,
-    scores: [],
-    subWinStatus: false
+    subWinStatus: false,
+    scores: []
   };
 
   checkWinStatus = () => {
-    console.log("checking if you've won");
     if (this.state.winStatus === true) {
       alert(
         `You win! You finished difficulty level ${
           this.state.difficulty.type
         } in ${this.state.runningTime /
-          1000} seconds. Your score has been added to the leaderboard, click the leaderboard button to see where you stand...`
+          1000} seconds. Your score has been added to the leaderboard, click the leaderboard to check if you've made the top 25 for your difficulty`
       );
       firestore
         .collection("Leaderboard")
@@ -44,10 +42,6 @@ class Game extends Component {
     }
   };
 
-  stopwatchStatus = status => {
-    this.setState({ isStopwatchRunning: status });
-  };
-
   handleClick = () => {
     let numImages = this.state.difficulty
       ? this.state.difficulty.numImages
@@ -61,9 +55,7 @@ class Game extends Component {
     this.setState(state => {
       if (state.status) {
         clearInterval(state.timer);
-        this.stopwatchStatus(false);
       } else {
-        this.stopwatchStatus(true);
         const startTime = Date.now() - state.runningTime;
         state.timer = setInterval(() => {
           this.setState({ runningTime: Date.now() - startTime });
@@ -74,10 +66,6 @@ class Game extends Component {
   };
 
   handleImageClick = () => {
-    console.log(
-      this.state.correctedArray.filter(booleanValue => booleanValue === false)
-        .length
-    );
     let winStatus =
       this.state.correctedArray.filter(booleanValue => booleanValue === false)
         .length === 1
@@ -146,7 +134,7 @@ class Game extends Component {
 
     let addImages =
       this.state.difficulty &&
-      this.state.isStopwatchRunning &&
+      this.state.status &&
       this.state.subWinStatus === false ? (
         <section className={styles.mainContent}>
           <Images
