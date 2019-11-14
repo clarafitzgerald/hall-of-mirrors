@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./Game.module.scss";
 import Button from "../../components/Button";
 import Images from "../Images";
+import { globalHistory } from "@reach/router";
 import { firestore } from "../../firebase";
 
 class Game extends Component {
@@ -33,7 +34,7 @@ class Game extends Component {
           finishTime: this.state.runningTime
         })
         .then(() => {
-          console.log("Document successfully written!");
+          globalHistory.navigate("/leaderboard");
         })
         .catch(function(error) {
           console.error("Error writing document: ", error);

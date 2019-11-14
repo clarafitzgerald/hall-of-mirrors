@@ -19,7 +19,6 @@ class App extends React.Component {
         const user = result.user;
         this.setState({ user: user });
         globalHistory.navigate("/");
-        // global history here tells the browser where to send you once logged in
       })
       .catch(error => console.log(error));
   };
