@@ -8,6 +8,7 @@ import { Router } from "@reach/router";
 import Game from "../Game/Game";
 import Hall from "../Hall";
 import Leaderboard from "../Leaderboard";
+import Why from "../../components/Why/Why";
 
 class App extends React.Component {
   state = { user: null, numImages: 0, rotation: 0 };
@@ -68,6 +69,14 @@ class App extends React.Component {
                 Leaderboard
               </Link>
             </button>
+            <button>
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to="/why"
+              >
+                Why?
+              </Link>
+            </button>
           </section>
           <Router>
             <Hall
@@ -78,6 +87,7 @@ class App extends React.Component {
             />
             <Game user={this.state.user} path="/game" />
             <Leaderboard path="leaderboard" />
+            <Why path="why" />
           </Router>
         </section>
       ) : (

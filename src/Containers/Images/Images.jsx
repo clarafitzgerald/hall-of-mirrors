@@ -33,6 +33,7 @@ class Images extends Component {
           isCorrected={this.isCorrected}
           index={index}
           handleImageClick={this.props.handleImageClick}
+          game={this.props.game}
         />
       );
     }

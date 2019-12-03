@@ -7,17 +7,29 @@ class Image extends Component {
     color: `rgb(${this.props.firstRandomNumber255}, ${this.props.secondRandomNumber255}, ${this.props.thirdRandomNumber255})`
   };
   resetTransformations = () => {
-    if (this.state.rotationValue !== 0) {
-      this.props.isCorrected(this.props.index, true);
-      this.setState({ rotationValue: 0, scale: 1, color: "transparent" });
-      this.props.handleImageClick();
+    if (this.props.game) {
+      if (this.state.rotationValue !== 0) {
+        this.props.isCorrected(this.props.index, true);
+        this.setState({ rotationValue: 0, scale: 1, color: "transparent" });
+        this.props.handleImageClick();
+      } else {
+        this.props.isCorrected(this.props.index, false);
+        this.setState({
+          rotationValue: this.props.randomNumber360,
+          scale: this.props.randomNumber2,
+          color: `rgb(${this.props.firstRandomNumber255}, ${this.props.secondRandomNumber255}, ${this.props.thirdRandomNumber255})`
+        });
+      }
     } else {
-      this.props.isCorrected(this.props.index, false);
-      this.setState({
-        rotationValue: this.props.randomNumber360,
-        scale: this.props.randomNumber2,
-        color: `rgb(${this.props.firstRandomNumber255}, ${this.props.secondRandomNumber255}, ${this.props.thirdRandomNumber255})`
-      });
+      if (this.state.rotationValue !== 0) {
+        this.setState({ rotationValue: 0, scale: 1, color: "transparent" });
+      } else {
+        this.setState({
+          rotationValue: this.props.randomNumber360,
+          scale: this.props.randomNumber2,
+          color: `rgb(${this.props.firstRandomNumber255}, ${this.props.secondRandomNumber255}, ${this.props.thirdRandomNumber255})`
+        });
+      }
     }
   };
 

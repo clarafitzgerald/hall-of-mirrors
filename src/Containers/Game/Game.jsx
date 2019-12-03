@@ -145,6 +145,7 @@ class Game extends Component {
             isActive={this.state.isActive}
             correctedArray={this.state.correctedArray}
             handleImageClick={this.handleImageClick}
+            game={true}
           />
         </section>
       ) : (
