@@ -115,17 +115,23 @@ class Game extends Component {
     ));
 
     let initializeGame = this.state.difficulty ? (
-      <div className={styles.buttons}>
-        <p className={styles.button}>
-          {Math.ceil(this.state.runningTime / 100) / 10}s
+      <>
+        <p>
+          Click the images to reset them back to normal. Reset them all as
+          quickly as you can!
         </p>
-        <button className={styles.button} onClick={this.handleClick}>
-          {this.state.status ? "Pause" : "Start"}
-        </button>
-        <button className={styles.button} onClick={this.handleReset}>
-          Play again?
-        </button>
-      </div>
+        <div className={styles.buttons}>
+          <p className={styles.button}>
+            {Math.ceil(this.state.runningTime / 100) / 10}s
+          </p>
+          <button className={styles.button} onClick={this.handleClick}>
+            {this.state.status ? "Pause" : "Start"}
+          </button>
+          <button className={styles.button} onClick={this.handleReset}>
+            Play again?
+          </button>
+        </div>
+      </>
     ) : (
       <>
         <p>First, select your difficulty</p>
